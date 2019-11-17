@@ -31,11 +31,21 @@ def polinomio_taylor(f, x0, n):
     f: función de variable real f(x).
     x0: punto centro del polinomio.
     n: grado del polinomio.
-    """
-    
-    return polinomio
+    """  
+    def _(x):
+        global f
+        for i in range(n-1):
+            if i == 0: # Se evalua la funcion original 
+                polinomio = f(x0)
+            else: # Se evalua con las derivadas
+                dxdf = derivada(f)
+                f = dxdf
+                polinomio += dxdf(x0)*(x-x0**i)/math.factorial(i)           
+        return polinomio
+    return _
 
 
 if __name__ == '__main__':
-    # Pruebe aquí el polinomio de Taylor.
-    pass
+    f = lambda x: math.sin(x)
+    polinomio = polinomio_taylor(f,0,4)
+    print (polinomio(0.3))
