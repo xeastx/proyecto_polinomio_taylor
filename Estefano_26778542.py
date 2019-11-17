@@ -32,10 +32,32 @@ def polinomio_taylor(f, x0, n):
     x0: punto centro del polinomio.
     n: grado del polinomio.
     """
-    
+
+    def polinomio(x, df=f, j=0):
+        """
+        Funcion recursiva para sacar el polinomio que retorna la serie de un grado n en una funcion.
+
+        Parámetros:
+        x: función de variable real f(x). variable a recivir
+        df: funcion o deivada de la funcion en el grado j. se inicializa con la funcion original
+        j: contador de iteraciones. se inicializa en 0
+        """
+
+        if(j<n): #mientras j sea menor que n se le suma el polinomio de grado actual con el de grado mayor                                                                            
+            return (df(x0)*((x-x0)**j)/math.factorial(j))+polinomio(x,derivada(df),j+1)
+        else:   #Condicion de salida que el grado sea igual a las iteraciones
+            return df(x0)*((x-x0)**j)/math.factorial(j) 
+
     return polinomio
 
 
 if __name__ == '__main__':
     # Pruebe aquí el polinomio de Taylor.
-    pass
+
+    f = lambda x: math.sin(x)
+    g = lambda x: math.e**(x**2)
+
+    x = polinomio_taylor(f,0,4)
+
+
+    print (x(0.3))
