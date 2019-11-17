@@ -48,4 +48,6 @@ def polinomio_taylor(f, x0, n):
 if __name__ == '__main__':
     f = lambda x: math.sin(x)
     polinomio = polinomio_taylor(f,0,4)
-    print (polinomio(0.3))
+    print  ("Valor real:", f(0.3))
+    print ("Valor aproximado:", polinomio(0.3))
+    
