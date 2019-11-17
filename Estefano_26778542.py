@@ -42,9 +42,10 @@ def polinomio_taylor(f, x0, n):
         df: funcion o deivada de la funcion en el grado j. se inicializa con la funcion original
         j: contador de iteraciones. se inicializa en 0
         """
-        if(j<n):                                                                            #Concion de salida que el grado sea igual a las iteraciones
+
+        if(j<n): #mientras j sea menor que n se le suma el polinomio de grado actual con el de grado mayor                                                                            
             return (df(x0)*((x-x0)**j)/math.factorial(j))+polinomio(x,derivada(df),j+1)
-        else:
+        else:   #Condicion de salida que el grado sea igual a las iteraciones
             return df(x0)*((x-x0)**j)/math.factorial(j) 
 
     return polinomio
